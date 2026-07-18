@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jehuda Chang — Data Analytics Portfolio</title>
+  <meta name="description" content="Jehuda Rhema Chang — Data Analytics undergraduate at Sunway University. Turning data into decisions with Machine Learning, SQL, Python and SAS." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Loader -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-mark">JC</div>
+      <div class="loader-bar"><div class="loader-bar-fill" id="loader-fill"></div></div>
+      <div class="loader-pct" id="loader-pct">0%</div>
+    </div>
+  </div>
+
+  <!-- Grain -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <header class="nav" id="nav">
+    <a class="nav-mark" href="#hero" data-nav>JC<span class="nav-mark-dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#snapshot" data-nav>Snapshot</a>
+      <a href="#skills" data-nav>Toolkit</a>
+      <a href="#projects" data-nav>Projects</a>
+      <a href="#leadership" data-nav>Leadership</a>
+      <a href="#contact" data-nav>Contact</a>
+    </nav>
+    <a class="btn btn-nav" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-sticky">
+        <canvas id="orbit-canvas"></canvas>
+        <div class="hero-vignette" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="hero-eyebrow" id="hero-eyebrow">Portfolio — Class of 2027</p>
+          <h1 class="hero-title" id="hero-title" aria-label="Jehuda Chang">
+            <span class="hero-line" data-split>JEHUDA</span>
+            <span class="hero-line hero-line-accent" data-split>CHANG</span>
+          </h1>
+          <p class="hero-sub" id="hero-sub">Data Analytics Undergraduate, Sunway University</p>
+          <p class="hero-tag" id="hero-tag">Turning data into decisions — Machine Learning, SQL, Python, SAS.</p>
+        </div>
+        <div class="hero-scrollhint" id="hero-scrollhint">
+          <span>Scroll</span>
+          <span class="hero-scrollhint-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SNAPSHOT ============ -->
+    <section class="section snapshot" id="snapshot">
+      <div class="section-head">
+        <p class="section-label"><span class="label-dash"></span>01 — Snapshot</p>
+        <h2 class="section-title" data-reveal>THE SHORT<br /><em>VERSION.</em></h2>
+        <p class="section-intro" data-reveal>No hype reel — just the numbers and the record. A data analytics student
+          who takes the coursework seriously and ships real projects outside of it.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card" data-reveal>
+          <span class="stat-value">3.75</span>
+          <span class="stat-key">CGPA</span>
+          <span class="stat-note">BSc (Hons) Data Analytics</span>
+        </div>
+        <div class="stat-card" data-reveal>
+          <span class="stat-value">3<em>×</em></span>
+          <span class="stat-key">Dean's List</span>
+          <span class="stat-note">Three consecutive semesters</span>
+        </div>
+        <div class="stat-card" data-reveal>
+          <span class="stat-value">JC</span>
+          <span class="stat-key">Jeffrey Cheah Scholar</span>
+          <span class="stat-note">Sunway scholarship recipient</span>
+        </div>
+        <div class="stat-card" data-reveal>
+          <span class="stat-value">'27</span>
+          <span class="stat-key">Class of 2027</span>
+          <span class="stat-note">Expected graduation</span>
+        </div>
+        <div class="stat-card stat-card-wide" data-reveal>
+          <span class="stat-value">SUNWAY</span>
+          <span class="stat-key">Sunway University</span>
+          <span class="stat-note">In partnership with Lancaster University, UK</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section skills" id="skills">
+      <div class="skills-bg" aria-hidden="true">
+        <canvas id="builder-canvas"></canvas>
+        <div class="skills-bg-overlay"></div>
+      </div>
+      <div class="skills-inner">
+        <div class="section-head">
+          <p class="section-label"><span class="label-dash"></span>02 — Toolkit</p>
+          <h2 class="section-title" data-reveal>WHAT I<br /><em>WORK WITH.</em></h2>
+        </div>
+        <div class="skill-groups">
+          <div class="skill-group" data-reveal>
+            <h3>Programming &amp; Query</h3>
+            <ul class="tags">
+              <li>Python</li><li>SQL</li><li>Java</li><li>R Programming</li>
+            </ul>
+          </div>
+          <div class="skill-group" data-reveal>
+            <h3>Analytics</h3>
+            <ul class="tags">
+              <li>Data Cleaning</li><li>Data Visualisation</li><li>Statistical Analysis</li><li>Web Scraping</li>
+            </ul>
+          </div>
+          <div class="skill-group" data-reveal>
+            <h3>Statistical &amp; Data Software</h3>
+            <ul class="tags">
+              <li>SAS Enterprise Guide</li><li>SAS Viya</li><li>SAS Miner</li><li>Power BI</li><li>Microsoft Excel</li><li>Microsoft Access</li>
+            </ul>
+          </div>
+          <div class="skill-group" data-reveal>
+            <h3>Developer Tools &amp; Utilities</h3>
+            <ul class="tags">
+              <li>GitHub</li><li>VS Code</li><li>Cisco Packet Tracer</li><li>Canva</li><li>Filmora</li>
+            </ul>
+          </div>
+          <div class="skill-group" data-reveal>
+            <h3>Languages Spoken</h3>
+            <ul class="tags">
+              <li>English <span class="tag-level">Fluent</span></li>
+              <li>Malay <span class="tag-level">Conversational</span></li>
+              <li>Mandarin <span class="tag-level">Conversational</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section projects" id="projects">
+      <div class="section-head">
+        <p class="section-label"><span class="label-dash"></span>03 — Projects</p>
+        <h2 class="section-title" data-reveal>BUILT, NOT<br /><em>JUST STUDIED.</em></h2>
+      </div>
+      <div class="project-list">
+
+        <article class="project-card" data-reveal data-project="lumosdrive" tabindex="0" role="button" aria-expanded="false">
+          <div class="project-top">
+            <span class="project-num">01</span>
+            <span class="project-badge">Top 14 Nationally · July 2026</span>
+          </div>
+          <h3 class="project-title">LumosDrive MY</h3>
+          <p class="project-pitch">AI-driven vehicle safety system with personalised fatigue detection and a Malaysian Cultural Rhythm Engine — built for Mercedes-Benz Tech Malaysia Vibathon 2026.</p>
+          <ul class="tags tags-sm"><li>Python</li><li>Machine Learning</li><li>Computer Vision</li><li>AI Safety</li></ul>
+          <div class="project-more">
+            <p>LumosDrive MY tackles driver fatigue with a personalised detection model rather than one-size-fits-all thresholds. Its Malaysian Cultural Rhythm Engine adapts alerts to local driving patterns — festive-season traffic, long balik kampung drives and late-night highway runs. Placed Top 14 nationally at the Mercedes-Benz Tech Malaysia Vibathon 2026.</p>
+          </div>
+          <span class="project-expand" aria-hidden="true">+</span>
+        </article>
+
+        <article class="project-card" data-reveal data-project="topcoders" tabindex="0" role="button" aria-expanded="false">
+          <div class="project-top">
+            <span class="project-num">02</span>
+            <span class="project-badge">National Finalist · June 2026</span>
+          </div>
+          <h3 class="project-title">Top Coders Malaysia 2026</h3>
+          <p class="project-pitch">Qualified to represent Sunway University at the National Finals after ranking in the Top 5 teams in the university qualifying round.</p>
+          <ul class="tags tags-sm"><li>Competitive Programming</li><li>Algorithms</li><li>Problem Solving</li><li>Teamwork</li></ul>
+          <div class="project-more">
+            <p>A national-level coding challenge run by the Data Science Association. Our team ranked in the Top 5 of Sunway University's qualifying round, earning a place to represent the university at the National Finals — a test of algorithms, speed and staying calm under a timer.</p>
+          </div>
+          <span class="project-expand" aria-hidden="true">+</span>
+        </article>
+
+        <article class="project-card" data-reveal data-project="nilm" tabindex="0" role="button" aria-expanded="false">
+          <div class="project-top">
+            <span class="project-num">03</span>
+            <span class="project-badge">2nd Runner-Up · April 2026</span>
+          </div>
+          <h3 class="project-title">NILM Energy Monitoring System</h3>
+          <p class="project-pitch">Energy analytics platform for Malaysian SMEs — non-intrusive load monitoring built for The Access Group Earth Day Global University Hackathon.</p>
+          <ul class="tags tags-sm"><li>Python</li><li>Data Visualisation</li><li>Energy Analytics</li><li>Sustainability</li></ul>
+          <div class="project-more">
+            <p>Non-Intrusive Load Monitoring (NILM) disaggregates a building's total power signal into per-appliance usage — no extra sensors needed. Our platform gives Malaysian SMEs appliance-level insight into where their energy budget goes. Took 2nd Runner-Up at The Access Group's Earth Day Global University Hackathon.</p>
+          </div>
+          <span class="project-expand" aria-hidden="true">+</span>
+        </article>
+
+        <article class="project-card" data-reveal data-project="waste" tabindex="0" role="button" aria-expanded="false">
+          <div class="project-top">
+            <span class="project-num">04</span>
+            <span class="project-badge">SAS Pipeline · Dec 2025</span>
+          </div>
+          <h3 class="project-title">Global Waste Management Analytics</h3>
+          <p class="project-pitch">SAS pipeline cleaning and merging multi-country waste datasets (2010–2019), with regression and correlation analysis on food &amp; plastic waste trends.</p>
+          <ul class="tags tags-sm"><li>SAS</li><li>Data Cleaning</li><li>Regression</li><li>Correlation Analysis</li></ul>
+          <div class="project-more">
+            <p>An end-to-end SAS workflow: ingesting messy multi-country waste datasets spanning 2010–2019, standardising and merging them, then running regression and correlation analysis to surface trends in food and plastic waste. The unglamorous 80% of analytics — done properly.</p>
+          </div>
+          <span class="project-expand" aria-hidden="true">+</span>
+        </article>
+
+        <article class="project-card" data-reveal data-project="worldquant" tabindex="0" role="button" aria-expanded="false">
+          <div class="project-top">
+            <span class="project-num">05</span>
+            <span class="project-badge">Silver Level · June 2026</span>
+          </div>
+          <h3 class="project-title">WorldQuant Challenge</h3>
+          <p class="project-pitch">Developed and optimised quantitative trading alphas on the WorldQuant BRAIN platform to reach Silver Level status.</p>
+          <ul class="tags tags-sm"><li>Quantitative Finance</li><li>Alpha Research</li><li>Statistics</li><li>WorldQuant BRAIN</li></ul>
+          <div class="project-more">
+            <p>On WorldQuant's BRAIN platform, I researched, built and optimised trading alphas — mathematical expressions that predict price movements — iterating on signal quality, turnover and robustness metrics to reach Silver Level status.</p>
+            <a class="project-link" href="https://platform.worldquantbrain.com" target="_blank" rel="noopener">Visit WorldQuant BRAIN ↗</a>
+          </div>
+          <span class="project-expand" aria-hidden="true">+</span>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ LEADERSHIP ============ -->
+    <section class="section leadership" id="leadership">
+      <div class="lead-banner">
+        <canvas id="collab-canvas"></canvas>
+        <div class="lead-banner-overlay"></div>
+        <h2 class="lead-banner-title" data-reveal>BUILT TO<br /><em>COLLABORATE.</em></h2>
+      </div>
+      <div class="section-head lead-head">
+        <p class="section-label"><span class="label-dash"></span>04 — Leadership &amp; Involvement</p>
+      </div>
+      <div class="lead-list">
+        <div class="lead-item" data-reveal>
+          <div class="lead-item-role">
+            <h3>Events Sub-Director</h3>
+            <p class="lead-org">Sunway Analytics Society</p>
+          </div>
+          <p class="lead-desc">Project Lead for the Sunway Engineering &amp; Technology Career Fair 2026 — led a 3-month
+            project serving <strong>500+ students</strong> and <strong>50+ company partners</strong>.</p>
+        </div>
+        <div class="lead-item" data-reveal>
+          <div class="lead-item-role">
+            <h3>Academic Tutor</h3>
+            <p class="lead-org">Aug 2025 — Present</p>
+          </div>
+          <p class="lead-desc">Advanced one-on-one tutoring in STEM subjects, built around active recall methodologies
+            rather than passive review.</p>
+        </div>
+        <div class="lead-item" data-reveal>
+          <div class="lead-item-role">
+            <h3>Community Impact</h3>
+            <p class="lead-org">Volunteering</p>
+          </div>
+          <p class="lead-desc">Organised donation drives delivering <strong>200+ items</strong> to Orang Asli communities;
+            outdoor education facilitator; volunteer at Pusat Kanak-Kanak Istimewa Kajang.</p>
+        </div>
+        <div class="lead-item" data-reveal>
+          <div class="lead-item-role">
+            <h3>Vice President &amp; Patrol Leader</h3>
+            <p class="lead-org">90th Petaling Perdana Boy Scouts</p>
+          </div>
+          <p class="lead-desc">Awarded the <strong>Anugerah Rambu Pengakap Kanak-Kanak</strong> — the highest leadership
+            honour in Malaysian Cub Scouts.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT / RESUME ============ -->
+    <section class="section contact" id="contact">
+      <div class="section-head">
+        <p class="section-label"><span class="label-dash"></span>05 — Next Step</p>
+        <h2 class="section-title contact-title" data-reveal>LET'S TURN DATA<br /><em>INTO DECISIONS.</em></h2>
+        <p class="section-intro" data-reveal>Open to data analytics internships. If the record above looks like someone
+          you'd want on your team, the full details are one click away.</p>
+      </div>
+      <div class="contact-actions" data-reveal>
+        <a class="resume-card" href="resume.pdf" target="_blank" rel="noopener">
+          <span class="resume-card-label">PDF · Opens in new tab</span>
+          <span class="resume-card-title">View My Resume</span>
+          <span class="resume-card-arrow">↗</span>
+        </a>
+        <div class="contact-buttons">
+          <a class="btn btn-solid" href="mailto:jehudachang@gmail.com">Get in Touch</a>
+          <a class="btn" href="https://linkedin.com/in/jehudachang" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer-name">JEHUDA RHEMA CHANG</p>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/jehudachang" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/jehudachang-cyber" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:jehudachang@gmail.com">jehudachang@gmail.com</a>
+    </div>
+    <p class="footer-note">© 2026 · Designed &amp; built with data-driven stubbornness.</p>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.150.1/three.min.js"></script>
+  <script src="assets/portrait_data.js"></script>
+  <script src="js/orbit.js"></script>
+  <script src="js/viz.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
