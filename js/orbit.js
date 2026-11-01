@@ -52,8 +52,8 @@
 
   /* ---------- central figure (billboarded group) ---------- */
   var figure = new THREE.Group();
-  // sink slightly below the grid so the feet sit inside the floor glow
-  figure.position.y = -0.18;
+  // float the figure up into the title's vertical band; rings + glow sit at the feet
+  figure.position.y = 0.30;
   scene.add(figure);
 
   // rim glow behind the portrait
@@ -63,10 +63,10 @@
     [1, 'rgba(0,0,0,0)']
   ]);
   var glow = new THREE.Mesh(
-    new THREE.PlaneGeometry(3.4, 4.2),
+    new THREE.PlaneGeometry(2.5, 3.1),
     new THREE.MeshBasicMaterial({ map: glowTex, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false })
   );
-  glow.position.set(0, 1.35, -0.32);
+  glow.position.set(0, 1.06, -0.3);
   figure.add(glow);
 
   var portraitMesh = null;
@@ -82,7 +82,7 @@
         tex.encoding = THREE.sRGBEncoding;
         tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
         var aspect = tex.image.width / tex.image.height;
-        var h = 2.75;
+        var h = 2.12;
         var w = h * aspect;
         portraitMesh = new THREE.Mesh(
           new THREE.PlaneGeometry(w, h),
@@ -90,6 +90,7 @@
         );
         portraitMesh.position.y = h / 2;
         figure.add(portraitMesh);
+        layoutFigure();
         api._portrait = 'loaded ' + tex.image.width + 'x' + tex.image.height;
       } catch (e) {
         api._portrait = 'exception: ' + e.message;
@@ -107,12 +108,12 @@
   var spot = new THREE.Mesh(
     new THREE.CircleGeometry(1.9, 48),
     new THREE.MeshBasicMaterial({
-      map: radialTexture(null, null, [[0, 'rgba(0,230,118,0.35)'], [1, 'rgba(0,0,0,0)']]),
+      map: radialTexture(null, null, [[0, 'rgba(0,230,118,0.5)'], [1, 'rgba(0,0,0,0)']]),
       transparent: true, blending: THREE.AdditiveBlending, depthWrite: false
     })
   );
   spot.rotation.x = -Math.PI / 2;
-  spot.position.y = 0.01;
+  spot.position.y = 0.3; // glow disc under the floating figure's feet
   scene.add(spot);
 
   /* ---------- floor grid ---------- */
@@ -138,19 +139,21 @@
   }));
   scene.add(particles);
 
-  /* ---------- wireframe rings ---------- */
-  function ring(radius, tilt, opacity) {
+  /* ---------- wireframe rings (the figure stands inside these) ---------- */
+  function ring(radius, tilt, opacity, y, tube) {
     var m = new THREE.Mesh(
-      new THREE.TorusGeometry(radius, 0.006, 8, 128),
+      new THREE.TorusGeometry(radius, tube || 0.009, 8, 160),
       new THREE.MeshBasicMaterial({ color: EMERALD, transparent: true, opacity: opacity, blending: THREE.AdditiveBlending, depthWrite: false })
     );
     m.rotation.x = Math.PI / 2 + tilt;
-    m.position.y = 1.2;
+    m.position.y = (y === undefined) ? 1.2 : y;
     scene.add(m);
     return m;
   }
-  var ring1 = ring(2.7, 0.12, 0.28);
-  var ring2 = ring(3.4, -0.08, 0.16);
+  // concentric rings at the figure's feet — it stands inside them
+  var ring1 = ring(1.95, 0.1, 0.72, 0.34, 0.012);
+  var ring2 = ring(2.7, -0.07, 0.4, 0.47, 0.009);
+  var ring3 = ring(3.6, 0.04, 0.2, 0.60, 0.007);
 
   /* ---------- holographic stat panels ---------- */
   function panelTexture(draw) {
@@ -268,9 +271,43 @@
       if (w >= 760) camera.setViewOffset(w, h, -w * 0.17, 0, w, h);
       else camera.clearViewOffset();
       camera.updateProjectionMatrix();
+      layoutFigure();
     }
   }
   window.addEventListener('resize', resize);
+
+  // Fit the figure's on-screen height/position to the headline's box so head
+  // lines up with the name's top and feet with its bottom on any desktop size.
+  var BASE_H = 2.12;
+  function layoutFigure() {
+    if (!portraitMesh) return;
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    var feetY = 0.30, s = 1;
+    if (w >= 900) {
+      var titleEl = document.getElementById('hero-title');
+      var tagEl = document.getElementById('hero-tag');
+      var r = titleEl && titleEl.getBoundingClientRect();
+      var tr = tagEl && tagEl.getBoundingClientRect();
+      if (r && r.height) {
+        var sY = function (wy) {
+          var v = new THREE.Vector3(0, wy, 0).project(camera);
+          return (-v.y * 0.5 + 0.5) * h;
+        };
+        var s0 = sY(0), B = (sY(2) - s0) / 2;
+        // head at the headline's top, feet down at the small tagline text
+        var botPx = (tr && tr.height) ? (tr.top + tr.height * 0.5) : r.bottom;
+        var feetW = (botPx - s0) / B;
+        var H = (r.top - s0) / B - feetW;
+        if (H > 1 && H < 6) { feetY = feetW; s = H / BASE_H; }
+      }
+    }
+    figure.scale.setScalar(s);
+    figure.position.y = feetY;
+    ring1.scale.setScalar(s); ring1.position.y = feetY + 0.04 * s;
+    ring2.scale.setScalar(s); ring2.position.y = feetY + 0.17 * s;
+    ring3.scale.setScalar(s); ring3.position.y = feetY + 0.30 * s;
+    spot.scale.setScalar(s); spot.position.y = feetY;
+  }
 
   var clock = new THREE.Clock();
 
@@ -288,13 +325,15 @@
     smooth += (progress - smooth) * Math.min(1, dt * 9);
 
     // gentle sway instead of endless drift, so the resting framing stays clean
-    var azimuth = smooth * Math.PI * 2 + Math.sin(t * 0.28) * 0.045 + mouseX * 0.07;
+    var azimuth = smooth * Math.PI * 1.0 + Math.sin(t * 0.28) * 0.045 + mouseX * 0.07;
     var lift = Math.sin(smooth * Math.PI);
-    var radius = 5.7 - lift * 0.8;
-    var height = 1.42 + lift * 0.4 - mouseY * 0.12 + Math.sin(t * 0.5) * 0.04;
+    var radius = 5.35 - lift * 0.25;
+    // pull back on narrow/portrait screens so the figure doesn't crowd the title
+    if (camera.aspect < 1) radius *= 1 + (1 - camera.aspect) * 0.9;
+    var height = 1.5 + lift * 0.12 - mouseY * 0.12 + Math.sin(t * 0.5) * 0.04;
 
     camera.position.set(Math.sin(azimuth) * radius, height, Math.cos(azimuth) * radius);
-    camera.lookAt(0, 1.15, 0);
+    camera.lookAt(0, 1.25, 0);
 
     // billboard the figure so the cutout always faces the camera
     figure.rotation.y = Math.atan2(camera.position.x, camera.position.z);
@@ -303,6 +342,7 @@
     particles.rotation.y = t * 0.02 - smooth * 0.6;
     ring1.rotation.z = t * 0.05;
     ring2.rotation.z = -t * 0.035;
+    ring3.rotation.z = t * 0.022;
     panels.rotation.y = t * 0.02;
     panels.children.forEach(function (m) {
       m.position.y = m.userData.baseY + Math.sin(t * 0.8 + m.userData.phase) * 0.05;

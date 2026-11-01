@@ -83,16 +83,17 @@
     new Promise(function (res) { setTimeout(res, 6000); }) // never hold the page hostage
   ]).then(function () { setTimeout(finishLoad, 250); });
 
-  /* ---------- Hero scrub + pin (drives the WebGL orbit) ---------- */
+  /* ---------- Hero scrub (drives the WebGL orbit) ----------
+     No pin: the hero scrolls away normally with the page, so the figure
+     never feels "stuck". The orbit + fade play once over the exit (~1 screen),
+     so Snapshot is only one screen-scroll away. */
   var scrubProxy = { p: 0 };
   var scrubTL = gsap.timeline({
     scrollTrigger: {
       trigger: '.hero',
       start: 'top top',
-      end: '+=320%',
-      pin: '.hero-sticky',
-      scrub: true,
-      anticipatePin: 1,
+      end: 'bottom top',
+      scrub: 0.5,
       onToggle: function (self) {
         if (window.ORBIT) window.ORBIT.setActive(self.isActive || self.progress < 1);
       }
@@ -108,9 +109,10 @@
     }
   }, 0);
 
-  // Text drifts up + fades as the orbit plays
-  scrubTL.to('.hero-content', { yPercent: -36, opacity: 0, ease: 'power1.in', duration: 0.45 }, 0.05);
+  // Content + scene dissolve as the hero scrolls up and away
+  scrubTL.to('.hero-content', { yPercent: -14, opacity: 0, ease: 'power1.in', duration: 0.5 }, 0);
   scrubTL.to('.hero-scrollhint', { opacity: 0, duration: 0.12 }, 0);
+  scrubTL.to(['#orbit-canvas', '.hero-vignette'], { opacity: 0, ease: 'power1.in', duration: 0.55 }, 0.35);
 
   /* ---------- Intro timeline (after loader) ---------- */
   function introTimeline() {
